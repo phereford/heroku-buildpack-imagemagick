@@ -11,7 +11,7 @@ CACHE_DIR=$2
 CACHE_ENABLED=true
 VENDOR_DIR="$BUILD_DIR/vendor"
 INSTALL_DIR="$VENDOR_DIR/imagemagick"
-IMAGE_MAGICK_VERSION="7.0.10-35"
+IMAGE_MAGICK_VERSION="7.0.11-10"
 CACHE_FILE="$CACHE_DIR/imagemagick-$IMAGE_MAGICK_VERSION.tar.gz"
 
 if [ ! -f $CACHE_FILE ] || [ $CACHE_ENABLED != 'true' ]; then
@@ -36,7 +36,7 @@ if [ ! -f $CACHE_FILE ] || [ $CACHE_ENABLED != 'true' ]; then
   export CPPFLAGS="-I$INSTALL_DIR/include"
   export LDFLAGS="-L$INSTALL_DIR/lib"
   echo "-----> You should have webp and libwebp-dev installed. Also, there is a compatibility error between imagemagick 7.0.8 and liblibheif-dev and libheif-examples, so we force --with-heic=no"
-  ./configure --with-webp=yes --with-heic=no --prefix=$INSTALL_DIR
+  ./configure --with-webp=yes --with-heic=no --disable-openmp --prefix=$INSTALL_DIR
   make && make install
   cd ..
   rm -rf $IMAGE_MAGICK_DIR
