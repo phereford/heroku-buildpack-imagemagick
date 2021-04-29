@@ -36,7 +36,7 @@ if [ ! -f $CACHE_FILE ] || [ $CACHE_ENABLED != 'true' ]; then
   export CPPFLAGS="-I$INSTALL_DIR/include"
   export LDFLAGS="-L$INSTALL_DIR/lib"
   echo "-----> You should have webp and libwebp-dev installed. Also, there is a compatibility error between imagemagick 7.0.8 and liblibheif-dev and libheif-examples, so we force --with-heic=no"
-  ./configure --with-webp=yes --with-heic=no --disable-openmp --prefix=$INSTALL_DIR
+  ./configure --with-webp=yes --with-heic=no --prefix=$INSTALL_DIR
   make && make install
   cd ..
   rm -rf $IMAGE_MAGICK_DIR
@@ -74,7 +74,6 @@ cat > $INSTALL_DIR/policy.xml <<EOF
   <policy domain="delegate" rights="none" pattern="HTTPS" />
   <policy domain="delegate" rights="none" pattern="HTTP" />
   <policy domain="path" rights="none" pattern="@*"/>
-  <policy domain="resource" name="thread" value="1"/>
   <policy domain="cache" name="shared-secret" value="passphrase" stealth="true"/>
 </policymap>
 EOF
